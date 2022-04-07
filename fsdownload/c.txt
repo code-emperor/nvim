@@ -1,0 +1,121 @@
+some notes
+h:在光标所在之前输入
+a:在光标所在字符的下一个字符
+shift+a:行尾插入字符
+shift+i:行前插入字符
+o:本行的下一行开一行新行
+shift+o:当前行的上一行添加一个新行
+按esc:光标将会落在所在之前的一个字符
+上下左右有个更好的方法
+d3l:向右删除3个字符
+dd：删除一整行，其实是剪切的操作
+y3l:向右复制了3个字符
+c6l:向右删除6个字符并进入写入模式
+<station><motion>
+w:单词跳转
+cw:删除当前所在单词,如果光标在词中的话，只能删除一半
+chw:如果光标所在词中，可以删除光标所在单词
+"zhe shi ying hao limian de nei rong"
+ch"：能够删除引号里面的所有内容,并进入写入模式
+yh":复制引号里面的内容
+dh":删除引号里面的内容，不会进入写入模式
+This is vim: the best editor out here
+fv:光标会寻找光标之后第一个字母v的位置
+df::删除从光标开始找到的第一个冒号那里
+yf::复制到冒号的位置
+p:黏贴操作
+cf::删除到冒号，并且进入写入模式
+如何快速浏览
+U:向上移动五行
+E：向下移动五行
+/motion:寻找这个单词
+-+：翻阅查找的单词
+空格+enter键：去掉查找之后的高亮显示
+
+:split:上下分屏
+:vsplit:左右分屏，Q结束
+color+空格:可以更换vim背景颜色，但是我的不起作用。
+GitHub上面有个搜索vim-plug，这是vim的插件管理器，上面搜索指令。
+plug语法：Plug '中间放插件的名称' call plug#end() 
+第一个安装的插件是vim-ariline ,如：Plug 'vim-ariline/vim-airline',然后再SR，保存，加载.vimrc，然后输入命令:PlugInstall,安装好之后vim下会有一个状态栏，显示当前模式，和所在的文件夹位置。
+第二个安装的插件是vim-snazzy，，如：Plug 'connorholyday/vim-snazzy',然后再SR，保存，加载.vimrc，然后输入命令:PlugInstall,安装好之后vim，可以设置透明背景。
+v:直接进入可视模式，可以用鼠标选中文本
+大写V：可以直接移动上下左右光标，多行进行操作，比如复制一段内容到其他位置。
+V后选中一些行，想执行一些复杂的指令，按下:normal Imy-wallpaper在加回车，会在每一行前加入my-wallpaper这几个字符。
+如何过打下面这个代码:normal A.txt+回车，就会在行尾加个.txt
+my-wallpaper-disjfdasjfk.txt
+my-wallpaper-fjffjdkfkadsfdsalk.txt
+my-wallpaper-fjdasjfidsakkjdk.txt
+my-wallpaper-jfdlasjfdisidis.txt
+
+光标移到第一行，进入可视模式后，按大写G，会将光标移动最后一行，并选中所有内容
+大功能：可视块模式,可以移动鼠标选中块级文本，可用于删除后缀名，非常的实用。
+如果想在每一行前加入字母，可以进入可视块模式选择，然后按shift+I，打入这个字母，再按Esc键就可以了。
+如何分屏
+sl:向右分屏，并且光标指向左方
+si:向上分屏，并且光标指向右方
+sk:向下分屏，并且光标指向下方
+sj:向左分屏，并且光标指向左方
+如何在vim中打开其他文件？
+先分屏，在按:e +其他文件路径，就可打开，e:editor的意思
+空格+j，将光标跨屏移动到左边的窗口
+空格+l，将光标跨屏移动到右边的窗口
+空格+i，将贯标跨屏移动到上边的窗口
+空格+k，将光标跨屏移动到下边的窗口
+如何在vim中调整各个窗口的大小？
+传统的上下左右键可以调账各个窗口的大小,前提必须是在普通模式之下，插入模式调整不了。 
+打开新的标签，不想退出原来的文件。
+ 
+tu:打开新的标签页，tj:向左移动标签页，tl:向右移动标签页,tk:删除当前标签页之外的所有标签页，good
+sv:从上下分屏改为左右分屏，sh:从左右分屏改为上下分屏，至于交换位置可以百度搜索实用的方法。
+ 
+下面这是我的vimrc文件，不知道对你是否有用，仅供参考
+let mapleader=" "
+set number
+set norelativenumber
+set cursorline
+set wrap //设置自动换行
+set showcmd //命令行显示输入的命令
+set wildmenu //如果输入一个命令，按tab键自动显示多种可能，可以用tab进行自由选择
+set incsearch //输入字符串就显示匹配点
+exec "nohlsearch"
+set ignorecase //搜索模式里忽略大小写
+set smartcase //智能搜索，如果搜索里含有大小写，能智能显示
+noremap i k //设置i键为上
+noremap k j //设置k键为下
+noremap j h //设置j键为左
+noremap h i //h键代替原来的在光标前插入的字符i
+noremap H I
+noremap I 5k
+noremap K 5j
+noremap J 5h
+noremap L 5l
+noremap = nzz
+noremap - Nzz //当使用查找功能后，利用加减号跳转翻阅
+noremap <LEADER><CR> :nohlsearch<CR>
+map s :<nop> //将小写s赋予无效键
+map S :w<CR>
+map Q :q<CR>
+map R :source $MYVIMRC<CR>
+map ; :
+map sl :set splitright<CR>:vsplit<CR>
+map sj :set nosplitright<CR>:vsplit<CR>
+map si :set nosplitbelow<CR>:split<CR>
+map sk :set splitbelow<CR>:split<CR>
+
+map <LEADER>l <C-w>l//多窗口之间的跳动，空格+likj
+map <LEADER>i <C-w>k
+map <LEADER>j <C-w>h
+map <LEADER>k <C-w>j
+
+map <up> :res +5<CR>//上下左右键调整vim各个窗口的大小
+map <down> :res -5<CR>
+map <left> :vertical resize-5<CR>
+map <right> :vertical resize +5<CR>
+
+map tu :tabe<CR>//tu表示打开一个新的标签页
+map tj :tabp<CR>//tj向左边移动标签页
+map tl :tabn<CR>//tl向右边移动标签页 
+map tk :tabo<CR>//tk关闭当前标签页之外的所有标签页
+map sv <C-w>t<C-w>H//上下分屏切换为左右分屏 
+map sh <C-w>t<C-w>K //左右分屏切换为上下分屏
